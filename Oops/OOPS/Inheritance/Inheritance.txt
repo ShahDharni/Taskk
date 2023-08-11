@@ -1,0 +1,7 @@
+# 1 Single Inheritance :- Inherits the characteristics from single parent-child class 
+# 2 Multiple Inheritance :- Inherits the properties from more than one base class
+# 3 Multilevel Inheritance :- Inherits properties from an immediate parent class which in turn inherits properties from his parent class
+# 4 Hierarchical Inheritance :- enables more than one derived class to inherit properties from a parent class.
+
+
+# Note: Child class can modify the behavior of the Parent class

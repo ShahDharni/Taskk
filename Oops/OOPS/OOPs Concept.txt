@@ -1,0 +1,22 @@
+Oops Concept :- 
+1. Class
+2. Objects
+3. Polymorphism
+4. Encapsulation
+5. Inheritance
+6. Data Abstraction
+
+
+
+1. Class:- A Class is a collection of objects. It contains the blueprint or prototype associated from which the objects are being created.
+2. Object :- Object is an entity that are associated with state and behavior. 
+   (a) State - represented by attributes and reflects the properties 
+   (b) Behavior -represented by methods and also reflects the response of object to other object.
+   (c) Identity - Gives unique name to object and also enables to interact with other object.
+
+
+
+
+
+self: Class must have first extra parameter. We do not have to give value to this parameter when we call the function. If we have a method that takes no arguments then also we have to pass one argument that is self. 
+__init__: init is used to initialize the function.

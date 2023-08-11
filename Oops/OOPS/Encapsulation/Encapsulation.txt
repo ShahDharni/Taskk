@@ -1,0 +1,13 @@
+Encapsulation is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. 
+In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class.
+
+
+# Access Modifiers :-
+Public Access Modifier - It is the default for member variables and methods for a class. Here, the data member and methods are accessible outside or inside of the class.
+ 
+Private Access Modifier -  A double underscore prefix denotes protected members before their name. Here, the data member and methods are accessed only within the class.
+ 
+Protected Access Modifier -  A single underscore prefix denotes protected members before their name. 
+Here, the data member and methods are accessed only within the class and the class that is inherited from the protected class.
+
+ 
