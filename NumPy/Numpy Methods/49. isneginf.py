@@ -1,3 +1,5 @@
+# The numpy.isneginf() function tests element-wise whether it is negative infinity or not, and returns the result as a boolean array. 
+
 import numpy as np
 
 print("Negative :\n", np.isneginf(0))
