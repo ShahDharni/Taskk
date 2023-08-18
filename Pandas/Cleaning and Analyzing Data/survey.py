@@ -86,6 +86,7 @@ print(tefe_resignations['Contributing Factors. Dissatisfaction'].value_counts())
 # verify the unique values
 print(tefe_resignations['Contributing Factors. Job Dissatisfaction'].value_counts())
 
+# print(dete_resignations['Job dissatisfaction'].value_counts())
 
 
 # Update the values in the contributing factors columns to be either True, False, or NaN
@@ -104,13 +105,41 @@ tefe_resignations_up=tefe_resignations.copy()
 print(tefe_resignations_up['dissatisfied'].value_counts(dropna = False))
 
 
-# dete_resignations['dissatisfied'] = dete_resignations(['Job dissatisfaction', 'Dissatisfaction with the department', 'Physical work environment', 'Lack of recognition', 'Lack of job security', 'Work location', 'Employment conditions', 'Work life balance', 'Workload']).any(1, skipna=False)
-# dete_resignations_up = dete_resignations.copy()
+dete_resignations['dissatisfied'] = dete_resignations[['cease date', 'DETE Start Date', 'physical_work_environment', 'lack_of_recognition', 'lack_of_job_security', 'work_location', 'employment_conditions', 'work_life_balance', 'workload']].any(1, skipna=False)
+dete_resignations_up = dete_resignations.copy()
 
-# # Check the unique values after the updates
-# dete_resignations_up['dissatisfied'].value_counts()
+# Check the unique values after the updates
+dete_resignations_up['dissatisfied'].value_counts()
 
 
 
 ## Combine the data 
 print(tefe_resignations_up['Institute']=="TEFE")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
