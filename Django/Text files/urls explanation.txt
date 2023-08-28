@@ -1,0 +1,9 @@
+The first URL pattern doesn't take any arguments and is mapped to the post_list view. 
+The second pattern takes the following four arguments and is mapped to the post_detail view. 
+Let's take a look at the regular expression of the URL pattern:
+• year: Requires four digits.
+• month: Requires two digits. We will only allow months with leading zeros.
+• day: Requires two digits. We will only allow days with leading zeros.
+• post: Can be composed by words and hyphens.
+
+

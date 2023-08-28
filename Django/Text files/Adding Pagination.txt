@@ -1,0 +1,8 @@
+Adding Pagination :-
+When you start adding content to your blog, you will soon realize you need to split the list of posts across several pages.
+Django has a built-in pagination class that allows you to manage paginated data easily.
+
+
+why use pagination ??
+You can improve the user experience of your Django web app significantly by spreading your content over multiple pages instead of serving all of it at once. This practice is called pagination. 
+To implement pagination, you have to consider page count, items per page, and the order of pages.

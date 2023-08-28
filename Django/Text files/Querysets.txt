@@ -1,0 +1,19 @@
+When Querysets are evaluated?
+You can concatenate as many filters as you like to a QuerySet and you will not hit 
+the database until the QuerySet is evaluated. Querysets are only evaluated in the 
+following cases:
+• The first time you iterate over them
+• When you slice them. for instance: Post.objects.all()[:3]
+• When you pickle or cache them
+• When you call repr() or len() on them
+• When you explicitly call list()on them
+• When you test it in a statement such as bool(), or , and, or if
+
+
+
+
+get_queryset() is the method that returns the QuerySet to be executed. 
+We use it to include our custom filter in the final QuerySet.
+ We have defined our custom manager and added it to the Post model; we can now use it to perform queries. 
+For example, we can retrieve all published posts whose title starts with Who using:
+Post.published.filter(title__startswith='Who')

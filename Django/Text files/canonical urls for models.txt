@@ -1,0 +1,15 @@
+What is Canonical urls??
+A canonical URL is the URL of the best representative page from a group of duplicate pages, according to Google.
+For example, if you have two URLs for the same page (such as example.com? dress=1234 and example.com/dresses/1234 ), Google chooses one as canonical.
+
+
+Canonical Urls used for models?
+You can use the post_detail URL that you have defined in the previous section to build the canonical URL for Post objects.
+The convention in Django is to add a get_absolute_url() method to the model that returns the canonical URL of the object. 
+For this method, we will use the reverse() method that allows you to build URLs by their name and passing optional parameters.
+
+
+Why we are using strftime ?
+Note that we are using the strftime() function to build the URL using month 
+and day with leading zeros. We will use the get_absolute_url() method in 
+our templates.

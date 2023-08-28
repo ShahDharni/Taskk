@@ -1,0 +1,19 @@
+First View
+
+You just created your first Django view. The post_list view takes the request object as the only parameter. Remember that this parameter is required by all views. 
+In this view, we are retrieving all the posts with the published status using the published manager we created previously.
+Finally, we are using the render() shortcut provided by Django to render the list of posts with the given template.
+This function takes the request object as parameter, the template path and the variables to render the given template.
+It returns an HttpResponse object with the rendered text (normally HTML code).
+The render() shortcut takes the request context into account, so any variable set by template context processors is accessible by the given template. 
+Template context processors are just callables that set variables into the context. 
+
+
+Second View
+
+This is the post detail view. This view takes year, month, day, and post parameters to retrieve a published post with the given slug and date. 
+Notice that when we created the Post model, we added the unique_for_date parameter to the slug field. 
+This way we ensure that there will be only one post with a slug for a given date, and thus, we can retrieve single posts by date and slug. 
+In the detail view, we are using the get_object_or_404() shortcut to retrieve the desired Post. 
+This function retrieves the object that matches with the given parameters, or launches an HTTP 404 (Not found) exception if no object is found.
+Finally, we use the render() shortcut to render the retrieved post using a template.
