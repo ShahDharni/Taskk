@@ -1,0 +1,15 @@
+A function based views is a python function that takes Web request and returns Web response. 
+
+The response can be the HTML contents of a web page, or a redirect, or a 404 error, or XML document or an image or anything.
+
+Each view function takes an Http request object as its first parameter,
+
+The view returns an Http Request object that contains the generated Response. Each view function is responsible for returning an Http Response object.
+
+We will call these function as view function, view or view function of an application.
+
+Syntax: def func(request): (Http Request Object) 
+          return Http Response(post/list/html) (Http Response Object)
+
+
+where http response is a class which is in django.http module so we have to import it before using HttpResponse.

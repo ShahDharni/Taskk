@@ -1,0 +1,49 @@
+1. keys - keys methods return a view object that displays a list of all keys in the dictionary
+dict.keys()
+
+2. items - item methods returns the list with all dictionary keys with values
+dict.items()
+
+3. clear - clear function is used to erase all the elements of list. After this operation list becomes empty
+dict.clear()
+
+4. setdefault - setdefault method returns the value of a key ( if key is in dictionary). If not ,it inserts key with the value to the dictionary.
+dict.setdefault(key,default_value)
+
+5. flush - It delete the current session from the session and deletes the session cookies. This is used if you want to ensure that the previous session data can't be accessed  again from the user's browser.
+(for eg the django.contrib.auth.logout() function calls it)
+
+6. get_session_cookie_age - It returns the age of session cookies in seconds. Defaults to SESSION_COOKIE_AGE.
+
+7. set_expiry(value) - It sets the expiration time for the session. You can pass a number of different values :
+If value is an integer the session will expire after that many seconds of inactivity. For eg :- calling request.session.set_expiry(300) would make the session expire in 5 minutes.
+
+If value is datetime or timedelta object, the session will expire at that specific time or date. Note that datetime and timedelta value are only serializable if you are using Pickle serializer.
+
+If value is 0 the user's session cookie will expire when the user web browser is closed.
+
+If value is None, the session reverts to using the global session expiry policy
+
+Reading a session is not considered as activity for expiration purposes. Session expiration is computed from the last time the session was modified.
+
+
+8. get_expiry_age - It returns the number of seconds until this session expires. For session with no custom expiration (or those set to expire at browser close), this will equal SESSION_COOKIE_AGE
+This function accepts two optional keyword arguments: 
+
+modification :- last modification of the session as a datetime object. Defaults to the current time
+
+expiry :- expiry information for the session, as a datetime object, an int(in seconds) or None. Defaults to the value stored in the session by set_expiry(), if there is one, or None.
+
+9. get_expiry_date - It returns the date this session will expire.For session with no custom expiration (or those set to expire at browser close), this will equal SESSION_COOKIE_AGE_seconds from now.
+
+This function accepts the same keyword as get_expiry_age()
+
+10. get_expiry_at_browser_close - It returns either True or False depending on whether the user's session cookie will expire when the user's we browser is closed.
+
+11. clear_expired - It removes the expired session from the session store. This class method is called by clearsessions.
+
+12. set_test_cookie - Its sets a test cookie to determine whether the user's browser supports cookies. Due to the way cookies work, you won't be able to test this until the user's next page request.
+
+13. test_cookie_worked - It either returns True OR False depending on whether the user's browser accepted the test cookie. Due to the way cookies work, you'll have to call set_test_cookie() on a previous,seperate page request.
+
+14. delete_test_cookie - It deletes the test cookie. Use this to clean up after yourself.

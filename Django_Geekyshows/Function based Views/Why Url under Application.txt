@@ -1,0 +1,12 @@
+To define url at project level for all the apps
+
+This approach increases the dependency of applications in project which means if we want to use particular application in other project it might create issues.
+
+Our each application should be independent or less dependent on project so we sholud use our application in another project easily without worrying about urls.py folder avaiable in project folder.
+
+Benefits of using URL under application:-
+Reduces the dependency of application
+
+Enhance the performance of the application
+
+Reusability of the application becomes easy

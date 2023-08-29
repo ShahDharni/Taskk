@@ -1,0 +1,23 @@
+To design urls for app, you create a Python module informally named urls.py.
+
+This module is pure Python code and is mapping between Url Path expressions to view function.
+
+It can be referenced other mappings.
+
+Its pure python code so it can be constructed dynamically.
+
+path(route,view,kwargs=None, name=None)
+
+Path :- It returns an element for inclusion in urlpatterns.
+
+where the route arguments should be string or gettext_lazy() that contains a Url pattern. The string may contain angle brackets <username> to capture part of the url and send it as a  keyword arguments to the view.
+The angle bracket may contain converter specification like the int part of the <int:id> which limit the characters matched and may also change the type of the variable passed to view function.
+For eg <int:id> matches a string of decimal digits and converts the value to an int 
+
+The view argument is a view function or the result of as_view() for class based views.
+
+It can also be django.urls.include()
+
+The kwargs allows to pass the additional arguments to view function or method. It should be dictionary.
+
+Name is used to perform url reversing
