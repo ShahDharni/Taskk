@@ -1,0 +1,25 @@
+Built in signals
+
+Django provides a set of Built in signals that let user notified by Django itself of certain actions.
+
+Login and Logout signals - The auth framework uses the following signals that can be used for notification when user logs in or logout.
+
+django.contrib.auth.signals 
+1.user_logged_in(sender,request,user) - Sent when a user logged in successfully.
+where,
+sender - The class of the user that just logged in.
+request - Current Http Request instance.
+instance - The user instance that just logged in.
+
+2.user_logged_out(sender,request,user)  - Sent when the logged out method called.
+where,
+sender - The class of the user that just logged out or None if the user is not authenticated.
+request - Current Http Request instance.
+instance - The user instance that just logged out or None if the user is not authenticated.
+
+
+3. user_login_failed(sender,credentials,request) - Sent when the user failed to login successfully.
+where,
+sender - The name of the module used for authentication.
+credentials - A dictionary of keyword arguments containing the user credentials that were passed to authenticate() or your own custom authentication backends. Credentials matching a set of "sensitive" patterns (including passwords) will not be sent in the clear as a part of the signal. 
+request - The HttpRequest object, if one was provided to authenticate().
