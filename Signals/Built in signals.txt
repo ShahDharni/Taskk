@@ -4,7 +4,7 @@ Django provides a set of Built in signals that let user notified by Django itsel
 
 Login and Logout signals - The auth framework uses the following signals that can be used for notification when user logs in or logout.
 
-django.contrib.auth.signals 
+django.contrib.auth.signals - from where we can import signals.
 1.user_logged_in(sender,request,user) - Sent when a user logged in successfully.
 where,
 sender - The class of the user that just logged in.
