@@ -8,14 +8,11 @@
 <body>
     <h4>Get Session</h4>
     {{name}}<br><hr>
+    {{request.session.get_expiry_date}}<br>
+    {{request.session.get_expiry_age}}<br>
+    {{request.session.get_session_cookie_age}}<br>
+    {{request.session.get_expire_at_browser_close}}
     
-    {% for key in request.session.keys %}
-    {{key}}<br>
-    {% endfor %}<hr>
-
-    {% for key,value in request.session.items %}
-    {{key}} {{value}}<br>
-    {% endfor %}<hr>
 
 
 </body>

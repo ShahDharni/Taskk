@@ -1,24 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-def setsession(request):
-    request.session["name"]="Dharni"
-    request.session["lname"]="Shah"
+def settestcookie(request):
+    request.session.set_test_cookie()
+    return render(request, 'Student/settestcookie.html')
 
-    return render(request,'Student/setsession.html')
+def checktestcookie(request):
+    request.session.test_cookie_worked()
+    return render(request, 'Student/checktestcookie.html')
 
-def getsession(request):
-    # name=request.session["name"]
-    # or alternative method
-    name=request.session.get("name")
-    keys=request.session.keys()
-    items=request.session.items()
-    # age=request.session.setdefault("age",22)
-    return render(request,'Student/getsession.html',{'name':name,"key":keys,"item":items})
-
-
-def delsession(request):
-    request.session.flush()
-    # if "name" in request.session:
-    #     del request.session['name']
-    return render(request,'Student/delsession.html')
+def deltestcookie(request):
+    request.session.delete_test_cookie()
+    return render(request, 'Student/deltestcookie.html')

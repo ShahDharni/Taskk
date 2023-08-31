@@ -24,7 +24,7 @@ def getsession(request):
 
 def delsession(request):
     request.session.flush()
-    # request.clear_expired()
+    request.clear_expired()
     # if "name" in request.session:
     #     del request.session['name']
     return render(request,'Student/delsession.html')

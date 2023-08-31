@@ -1,5 +1,5 @@
 """
-URL configuration for Cookie_Methods project.
+URL configuration for Page_Session project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app2 import views
+from myapp import views
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("set/",views.settestcookie),
-    path("get/",views.checktestcookie),
-    path("del/",views.deltestcookie),
+    path("admin/", admin.site.urls), 
+    path("set/",views.setsession),
+    path("get/",views.getsession),
+    path("del/",views.delsession),
 ]
+

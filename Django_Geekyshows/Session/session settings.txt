@@ -1,0 +1,9 @@
+SESSION_COOKIE_AGE - The age of session_cookie in seconds. Default - 1209600(2 weeks in seconds)
+
+SESSION_CACHE-ALIAS - If you're using cache based session storage,this selects the cache to use. Default : "default".
+
+SESSION_COOKIE_DOMAIN - The domain to use for session cookies. Set this to a string such as "example.com" for cross-domain cookies, or use None for standard domain cookie.
+Be cautious when updating this setting to a production site. If you update this setting to enable cross-domain cookies on a site that previously used standard domain cookies, existing user cookies will set to the old domain. This may result in being unable to log in as long as these cookies persist.
+Default : None
+
+SESSION_COOKIE_HTTPONLY -  
