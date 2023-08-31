@@ -1,0 +1,38 @@
+The signals are utilities which allows us to associate events with actions.
+
+Signals allow certain senders to notify a set of receiver some action that has taken place.
+
+1. Login and Logout signals
+2. Models signals
+3. Management signals
+4. Request/Response signals
+5. Test signals
+6. Database wrappers
+
+
+Sender - who will send signals
+signals - signals
+Receiver - who will receive signals
+
+
+Receiver function - This function takes a sender argument along with the wildcard keyword arguments (**kwargs), all signal handlersmust take these arguments. A receiver can be any Python function or method.
+
+def receiver_func(sender,request,user,**kwargs):
+   pass
+
+Connecting/Registering receiver function : There are two ways you can connect a receiver to a signal :- 
+
+1.Manual Connect Route
+2.Decorator
+
+
+1. Manual Connect Route :- To receive a signal, register a receiver function using the Signal.connect() method. The receiver function is called when the signal is sent. All of the signals receiver functions are called one at a time, in the order they were registered.
+Signal.connect(receiver_func, Sender=None, weak=True, dispatch_uid=None)
+where,
+receiver_func - The callback function which will be connected to signal.
+sender - Specifiesa particular sender to receive signals from.
+weak - Django stores signal handlers as a weak references by default. Thus, if your receiver is a local function it may be garbage collected. To prevent this pass weak=FALSE when you call the signals connect() method.
+dispatch_uid - A unique identifier for a signal receiver in cases if the duplicated signals may be sent.
+
+
+2. Decorator - @receiver(signal or list of signal, sender)
