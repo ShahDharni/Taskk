@@ -2,7 +2,7 @@ Built in signals
 
 Django provides a set of Built in signals that let user notified by Django itself of certain actions.
 
-Login and Logout signals - The auth framework uses the following signals that can be used for notification when user logs in or logout.
+*Login and Logout signals - The auth framework uses the following signals that can be used for notification when user logs in or logout.
 
 django.contrib.auth.signals - from where we can import signals.
 1.user_logged_in(sender,request,user) - Sent when a user logged in successfully.
@@ -23,3 +23,58 @@ where,
 sender - The name of the module used for authentication.
 credentials - A dictionary of keyword arguments containing the user credentials that were passed to authenticate() or your own custom authentication backends. Credentials matching a set of "sensitive" patterns (including passwords) will not be sent in the clear as a part of the signal. 
 request - The HttpRequest object, if one was provided to authenticate().
+
+
+
+
+** Model Signals :- A set of signals sent by the model system.
+
+django.db.models.signals - from where we can import models signals
+
+1. pre_init(sender,args,kwargs) - whenever you instantiate a Django model, this signal is sent at the beginning of the model's __init__() method.
+where,
+sender - The model class that just had instance created.
+args - A list of positional arguments passed to __init__().
+kwargs - A dictionary of keyword arguments passed to __init__().
+
+2. post_init(sender,instance) - Like pre_init but this one is sent when the __init__ () method finishes.
+where,
+sender - The model class that just had instance created.
+instance - The actual instance of the model that's just been created.
+
+3.  pre_save(sender,instance,raw,using,update_fields) - This is sent at the beginning of a model's save() method.
+where,
+sender - The model class.
+instance - The actual instance been saved.
+raw - The Boolean; True if the model is saved exactly as presented(i.e when loading the fixture).One should not query/modify other records in the database as database might not be in consistent state yet.
+using - The database alias been used.
+update_fields - The set of fields to update as passed to Model.save(), or None if update_fields wasn't passed to save().
+
+4. post_save(sender,instance,created,raw,using,update_fields) - Like pre_save but sent when the save() method finishes.
+where,
+sender - The model class.
+instance - The actual instance been saved.
+created - A Boolean ; True if the new record was created.
+raw - The Boolean; True if the model is saved exactly as presented(i.e when loading the fixture).One should not query/modify other records in the database as database might not be in consistent state yet.
+using - The database alias been used.
+update_fields - The set of fields to update as passed to Model.save(), or None if update_fields wasn't passed to save().
+
+5. pre_delete(sender,instance,using) - Sent at the beginning of model's delete method and queryset's delete() method.
+where,
+sender - The model class.
+instance - The actual instance been saved.
+using - The database alias been used.
+
+6. post_delete(sender,instance,using) - Like pre_delete, but sent when the save() method finishes.
+where,
+sender - The model class.
+instance - The actual instance been saved.
+Note :- That the object will be no longer in the database, so be very careful what you do with this instance.
+using - The database alias been used.
+
+7. class_prepared(sender) - Sent whenever a model class has been “prepared” – that is, once a model has been defined and registered with Django's model system. 
+Django uses this signal internally; it's not generally used in third-party applications. 
+Since this signal is sent during the app registry population process, and AppConfig.ready() runs after the app registry is fully populated, receivers cannot be connected in that method.
+One possibility is to connect them with AppConfig.__init__() instead, taking care  not to import models or trigger calls to the App registry.
+where,
+sender - The model class which was just prepared
