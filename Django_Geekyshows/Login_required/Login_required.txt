@@ -1,0 +1,2 @@
+login_required(redirect_field_name="next",login_url=None)
+If the user is logged in, execute the view normally. The view code is free to assume the user logged in
