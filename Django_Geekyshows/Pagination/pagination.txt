@@ -13,5 +13,22 @@ object_list - It takes Tuple. list, Querysets or other sliceable object with a c
 per_page - The maximum number of items to include on a page, not including orphans. It is required.
 
 orphans - Use this when you don't want to have a last page with a very few items.
- If the last page would normally have a number of items less than or equal to orphans, then those items will bw added to the previous page(which becomes the last page) instead of leaving the items on a page by themselves.
- orphans deafult to zero, which means pages are never combined and the last page may have one item. It is optional.
+If the last page would normally have a number of items less than or equal to orphans, then those items will bw added to the previous page(which becomes the last page) instead of leaving the items on a page by themselves.
+orphans deafult to zero, which means pages are never combined and the last page may have one item. It is optional.
+
+allow_empty_first_page - whether or not the first page is allowed to be empty. If False and object_list is empty, then EmptyPge error will be raised. It is optional.
+
+
+Pagination Class Attributes :- 
+
+1. count - The total number of objects, across all the pages.
+2. num_pages - The total number of pages.
+3. page_iterator - A 1- based range iterator of page numbers, eg yielding[1,2,3,4]
+
+
+Pagination Methods :- 
+
+1. get_page(number):- This method returns a Page object with the given 1-based index, while also handling out of range and invalid page numbers.
+If the page isn't a number then returns the first page.
+If the page is negative or greater than the number of pages, it returns the last page.
+Raises an EmptyPage Exception only if you specify Paginator(...allow_empty_first_page=False) and the object_list is empty.
