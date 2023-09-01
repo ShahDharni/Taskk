@@ -1,0 +1,17 @@
+Pagination (Function based views)
+
+Using pagination we can split data to several pages, with Previous/Next links.
+Django provides few classes that helps you manage paginated classes :-
+1. Paginator class
+2. Page class
+
+
+1. Paginator class(object_list, per_page, orphans=0, allow_empty_first_page=True) -
+where,
+object_list - It takes Tuple. list, Querysets or other sliceable object with a count() or __len()__ method. It is required.
+
+per_page - The maximum number of items to include on a page, not including orphans. It is required.
+
+orphans - Use this when you don't want to have a last page with a very few items.
+ If the last page would normally have a number of items less than or equal to orphans, then those items will bw added to the previous page(which becomes the last page) instead of leaving the items on a page by themselves.
+ orphans deafult to zero, which means pages are never combined and the last page may have one item. It is optional.
