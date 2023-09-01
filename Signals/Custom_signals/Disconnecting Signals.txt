@@ -1,0 +1,4 @@
+Disconnecting signals
+
+signal.disconnect(receiver=None, sender=None, dispatch_uid=None):- This is used to disconnect a receiver from  signal. The arguments are as described in the Signal.connect().
+The method returns True if the receiver is disconnected and False if not.

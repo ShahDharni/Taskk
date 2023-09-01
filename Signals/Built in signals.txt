@@ -2,6 +2,8 @@ Built in signals
 
 Django provides a set of Built in signals that let user notified by Django itself of certain actions.
 
+
+
 *Login and Logout signals - The auth framework uses the following signals that can be used for notification when user logs in or logout.
 
 django.contrib.auth.signals - from where we can import signals.
@@ -78,3 +80,102 @@ Since this signal is sent during the app registry population process, and AppCon
 One possibility is to connect them with AppConfig.__init__() instead, taking care  not to import models or trigger calls to the App registry.
 where,
 sender - The model class which was just prepared
+
+
+
+
+*** Request/Response Signals - Signals sent by the core framework when processing a request.
+django.core.signals - from where we can import request/response signals.
+
+1. request_started(sender,enviorn) - Sent when Django begins processing HTTP request.
+where,
+sender - The handler class - eg django.core.handlers.wsgi.WsgiHandler - that handled the request.
+enviorn - The enviornment dictionary provided to the request.
+
+
+
+2. request_finished(sender) - Sent when Django finishes delivering the HTTP response to the client.
+where,
+sender - The handler class - eg django.core.handlers.wsgi.WsgiHandler - that handled the request.
+
+
+
+3. got_request_exception(sender,request) - This signal is sent whenever Django encounters an exception while processing an incoming Http request.
+where,
+sender - Unused(always None)
+request - The HTTP request object
+
+
+**** Management Signals - Signals sent by django-admin.
+django.db.models.signals - from where we can import Management signals.
+
+1. pre_migrate(sender,app_config,using,verbosity,interactive,plan,apps) - Sents by the migrate command before it starts to install an applications.
+   It's not emitted for applications that lack a model module. 
+where,
+sender - An AppConfig instance for the application about to be migrated/synced.
+
+app_config - Same as sender
+
+verbosity - Indicates how much information manage.py is printing on the screen.
+
+Function which listens to pre_migrate should adjust what they output to the screen based on the value of this argument.
+
+Interactive - If interactive is True, it's safe to prompt the user to input the things on the command line. 
+If interactive is False the functions which listens to this signal should not try to prompt for anything. 
+
+alias - The alias of database on which a command will operate.
+
+plan - The migration plan that is going to be used for migration run. While the plan is not public API, this allows for the rare cases when it is necessary to know the plan.
+A plan is a list of two-tuples with the first item being instance of the migartion class and second item showing if the migration was rolled back(True) or applied(False).
+
+apps - An instance for Apps containing the state of the project before the migration run. It should be used instead of global Apps registry to retrieve the models you want to perform the operation on.
+
+
+
+2. post_migrate(sender,app_config,using,verbosity,interactive,plan,apps) - Sent at the end of the migrate (even if no migartions are run) and flush commands.
+   It's not emitted for applications that lack a model module. Handlers of this signal must not perform database schema alteration as doing so may cause the flush command to fail if it runs during the migrate command
+where,
+sender - An AppConfig instance for the application that was just installed.
+
+app_config - Same as sender
+
+verbosity - Indicates how much information manage.py is printing on the screen.
+
+Function which listens to post_migrate should adjust what they output to the screen based on the value of this argument.
+
+Interactive - If interactive is True, it's safe to prompt the user to input the things on the command line. 
+If interactive is False the functions which listens to this signal should not try to prompt for anything. 
+
+alias - The alias of database on which a command will operate.
+
+plan - The migration plan that is going to be used for migration run. While the plan is not public API, this allows for the rare cases when it is necessary to know the plan.
+A plan is a list of two-tuples with the first item being instance of the migartion class and second item showing if the migration was rolled back(True) or applied(False).
+
+apps - An instance for Apps containing the state of the project before the migration run. It should be used instead of global Apps registry to retrieve the models you want to perform the operation on.
+
+
+
+
+***** Test Signals - Signals only sent when running tests.
+django.test.signals - From where we can import signals.
+
+1. setting_changed(sender,setting,value,enter) - This signal is sent when the value of the setting is changed through django.test.TestCase.settings() context manager or the django.test.override_settings() decorator/context manager.
+It's actually sent twice when the new value is applied ("setup") and when the original value is restored("teardown"). Use the enter argument to distinguish between the two.
+You can also import the signals form django.core.signals to avoid importing from django.test in non-test situations.
+
+where,
+sender - The settings handler.
+setting - The name of the setting.
+value - The value of the setting after the change. For setting that initially don't exist in the "teardown" phase, value is None.
+enter - A boolean; True if the setting is applied and False if the setting is restored.
+
+
+******* Database wrappers - Signal sent by the database wrappers when a database connection is initiated.
+django.db.backends.signals
+
+connection_created - Sent when the database wrappers makes the initial connection to the database.
+This is particularly useful if you would like to send any post connections command to the SQL backends.
+
+sender - The database wrapper class  - i.e django.db.backends.postgresql.DatabaseWrapper or django.db.backends.mysql.DatabaseWrapper.
+
+connection  - The database connection that was opened. This can be used in multiple-database configuration to differentiate connection signals from different database.

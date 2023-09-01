@@ -1,0 +1,16 @@
+All signals are django.dispatch.Signal instances.
+class Signal(providing_args=list)
+where,
+providing_args is the list of names of the arguments the signals will provide to listeners. This is purely documentational,however, as there is nothing that checks the signal actually provides this arguments to its listeners.
+You are allowed to change this list of arguments at any time.
+
+
+## How to send signals ?
+There are two ways of sending signals :- 
+
+1. Signal.send(sender,**kwargs) - This is used to send signal, all built-in signals use this to send signals. You must provide the signal argument which is a class most of the time and may provide as many keyword argumnets you like.
+It returns a list of tuple pair [(receiver,response)], representing the list of called receiver functions and their response values.
+
+
+2. Signal.send_robust(sender,**kwargs) - This is used to send signal. You must provide the signal argument which is a class most of the time and may provide as many keyword argumnets you like.
+It returns a list of tuple pair [(receiver,response)], representing the list of called receiver functions and their response values.

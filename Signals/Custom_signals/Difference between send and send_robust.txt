@@ -1,0 +1,6 @@
+Difference between send and send_robust :-
+
+send() does not catch any exceptions raised by receivers, it only allows errors to propogate. Thus not all the receivers may be notified of a signal in the face of an error.
+
+send_robust() catches all the errors derived from Python's exception class, and ensures all receivers are notiifed of the signal. 
+If an error occurs the error instance is returned in the tuple pair for the receiver that raised the error.
