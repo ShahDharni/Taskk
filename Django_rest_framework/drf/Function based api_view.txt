@@ -1,0 +1,27 @@
+This wrapper provides a few bits of functionality such as making sure you receive Request instances in your views, and adding context to Response objects so that content negotiation can be performed.
+
+The wrapper also provides behavior such as returning 405 method not allowed responses when appropriate, and handling any ParseError exception that occur when accessing request.data with malformed input.
+
+By default only get methods are accepted. Other methods will be respond with 405 method not allowed.
+
+@api_view()
+
+
+1. Request :- 
+Request provides a flexible objects parsing that allows you to treat request with JSON data or other media types in the same way that you would normally deal with the form data.
+
+request.data - returns the parsed content of the request body. This is similar to the standard request.POST and request.FILES attribute except that: 
+- It includes all parsed content, including file and non-file inputs.
+- It supports parsing the content of HTTP Methods other than POST, meaning that you can access the content of PUT and PATCH requests.
+- It supports the Rest Frameworks flexible request parsing, rather than just supporting form data.
+- For example you can handle the JSON data in the same way you handle the form data. 
+
+request.data() - returns the upper case string representation  of the request's HTTP Methods.
+request.query_params() - request.query_params is more correctly named synonym for request.get method.
+
+Note:- For clarity inside your code we will recommend you to use request.query_params instead of Django's standard request.GET. 
+Doing so will keep your codebase more corerct and obvious- any HTTP method type may include query parameters not just get requests.
+
+
+2. Response :- 
+REST FRAMEWORK  supports HTTP content negotiation by providing a Response class which allows you to return content that can be rendered into multiple types, depending on the client request.
