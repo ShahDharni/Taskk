@@ -16,10 +16,26 @@ class StudentApi(APIView):
         serializer=StudentSerializer(stu,many=True)
         return Response(serializer.data)
     
+
     def post(self,request,format=None):
         serializer= StudentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"msg":"Data Created"})
+        
+
+    def put(self,request,format=None,pk=None):
+        if request.method=="PUT":
+           id=pk
+           stu=Student.objects.get(stu,data=request.data,id=id)
+           serializer= StudentSerializer(data=request.data)
+           if serializer.is_valid():
+            serializer.save()
+            return Response({"msg":"Data Updated"})
+                    
+
+
+
+
 
 
