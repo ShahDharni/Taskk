@@ -32,6 +32,16 @@ class StudentApi(APIView):
            if serializer.is_valid():
             serializer.save()
             return Response({"msg":"Data Updated"})
+           
+
+    def patch(self,request,format=None,pk=None):
+        if request.method=="PUT":
+           id=pk
+           stu=Student.objects.get(stu,data=request.data,id=id)
+           serializer= StudentSerializer(data=request.data,partial=True)
+           if serializer.is_valid():
+            serializer.save()
+            return Response({"msg":"Data Updated Partially"})
                     
 
 
