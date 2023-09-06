@@ -1,0 +1,6 @@
+# Difference between celery and job_cron :- 
+
+Django celery is a background running task queue. It is usually used for time consuming jobs.
+Django cron_jobs module is used for short running scheduled tasks.
+Celery is an external dependency while cron_jobs is a part of djangp framework.
+Celery task can be dependent on other tasks while cron_jobs execution flow is always sequential, that means one job is executed at a time.

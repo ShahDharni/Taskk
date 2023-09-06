@@ -1,0 +1,100 @@
+What is cron job?
+Cron is a program that allows users of Unix systems to automatically execute commands, scripts or software at a date time displayed in advance or according to a cycle defined in advance.
+
+
+How command executes ?
+This is how command executed in stars ***** where,
+
+- first star indicates minute(0-59)
+- second star indicates hour(0-23)
+- third star indicates day of month(1-31)
+- fourth star indicates month(1-12)
+- fifth star indicates day of week (0-6)(sunday considered as 0)
+
+
+Why cron ?
+- The advantage of using cron is the exact specification of the timestamp that triggers a cron job.
+- While batch programming is often used for installing and configuring servers, cron jobs are often used for system administration.
+
+
+How to Use Cron in django app ?
+- First of all install the module using pip
+pip install django-crontab
+
+
+- Second add django_crontab in your INSTALLED_APP in django project settings.py.
+
+
+- Third Now create a file within your django’s project according to your module directory structure. 
+For this example let’s assume our file is myapp/cron.py. In this file we need to define the function which you want to be executed automatically via cron.
+
+def my_cron_job():
+  logic
+
+
+- Fourth Get back to the settings.py file and add the following line:
+CRONJOBS = [
+(‘*/2 * * * *’, ‘myapp.cron.my_cron_job’)
+]
+The above cron job is scheduled to be run at every 2nd minute of each hour.
+Keyword or positional arguments can also be provide:
+CRONJOBS = [
+(‘0 0 1 * *’, ‘myapp.cron.other_cron_job’, [‘pos_arg1’, ‘pos_arg2’], {‘verbose’: ‘key_arg’}),
+]
+
+
+- Fifth Next, run this command to add all the defined CRONJOBS to crontab(*nix cron utility). Make sure to run this command every time CRONJOBS is changed in any way.
+python manage.py crontab add
+
+
+- Sixth To list all the active CRONJOBS, run the following command
+python manage.py crontab show
+To remove all defined CRONJOBS, run:
+python manage.py crontab remove
+
+
+- Seventh Time to test out… Just run your server to see the changes.
+python manage.py runserver
+
+
+
+
+Jobs scheduling automation with django_cron library :- 
+
+- The convention is to prepare a Python script file for the code. 
+The python class extends the CronJobBase class from the installed library in the file.
+Also, a method called Schedule takes an argument of minutes that will be imported. 
+Such a job will run in a repeated manner in the interval of minutes provided. 
+However, this will execute a do() method inside the cron job class.
+Then, the job can be run manually by executing the snippet below.
+
+python manage.py runcrons
+
+
+- In addition, it is mandatory to register the CRON_CLASSES list at the bottom of the settings.py file. 
+The list contains all the cron classes that the application has. 
+Also, we need to add the permission classes for the API inside settings.py.
+
+In this way :-
+CRON_CLASSES = [
+    "news.cron.MyCronJob",
+    # ...
+]
+
+REST_FRAMEWORK = {
+  'DEFAULT_PERMISSION_CLASSES': [
+      'rest_framework.permissions.AllowAny',
+  ],
+}
+
+
+Making Models for the endpoint :-
+
+In this API, what is needed from the external endpoint is the ids of the external news data.
+Therefore, you will make the model with just two properties, the id and the datetime fetched.
+The best is to let the fetched ids be the primary keys of the database. 
+They are needed to get the latest news from the external endpoint.
+Add the snippet below to your models.py of the news app.
+
+Note: The save method under the class HackerNewsID saves data when called. This only formats the primary key to the id fetched.
+
