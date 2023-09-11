@@ -1,0 +1,6 @@
+When you start celery worker on the command line via celery --app you just start a supervisior process.
+The celery worker itself does not process any task.
+It spwans the child processes(or threads) and deals with all the book-keeping stuffs.
+The child processes(or threads) execute the actual task.
+This child processes are also known as execution pool.
+The size of the execution pool determines the number of task your celery worker can process.

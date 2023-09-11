@@ -1,0 +1,5 @@
+1. Third Party APIs call
+2. For High CPU Intensive tasks
+3. Periodic/Scheduled tasks
+4. For improving the user experience
+

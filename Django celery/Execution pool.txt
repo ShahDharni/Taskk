@@ -1,0 +1,33 @@
+Celery supports the following execution pool implementation :-
+- prefork (multiprocessing)[default]
+- solo
+- threads(multithreading)
+- eventlet
+- gevent
+
+When you normally start the celery worker using - 
+celery -A <your project_name>.celery worker -l info
+
+By default pool=prefork and concurrency = no of cores
+
+
+How big your execution pool should be ?
+
+- Depends on whether you use threads or processes.
+- whether you use threads or processes depends on what your tasks actually do (Like CPU intensive task or I/O task)
+
+
+So what things you have to decide ?
+
+- No. of worker, pool type(prefork,solo,gevent etc), concurrency, autoscale, broker.
+- CPU bound tasks are best executed by a prefork execution pool. I/O bound are best executed by a gevent/eventlet execution pool.
+- Celery can run also on a single machine, multiple machines or even across data centers.
+
+
+
+Suggestion to begin with :-
+1 worker per machine, with the default number of processes. This will reduce memory usage by eliminating the duplication of data betweem worker.
+
+Celery is a project with minimal funding, so we don't support Microsoft windows. PLease don't open any issue related to that platform.
+
+For windows use solo, gevent, eventlet pool.

@@ -1,0 +1,11 @@
+Celery requires "message transport" to send and receive the messages.
+Supported Brokers - RabbitMQ, redis, Amazon SQS.
+Result store - AMQP, Redis, Memcached, Django ORM, Elastic Search, MongoDB, Amazon S3, File system.
+
+Serialization:-
+- pickle,json,yaml,msgpack.
+- zlib, bzip2, compression.
+- Cryptographic message signing
+
+
+Celery system consists of multiple workers and brokers, giving way to high availability and horizontal scaling.

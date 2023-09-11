@@ -1,0 +1,11 @@
+Worker - Pool - Concurrency
+When you start the celery worker, you have to specify the autoscale, Pool and Concurrency in the command.
+
+pool - decides who will actually performs the task - thread, child process, worker itself or else.
+
+Concurrency - Concurrency will decide the size of the pool.
+
+autoscale - to dynamically resize the pool based on the load. The autoscaler adds more pool processes when there is work to do,  and starts removing processes when the work load is low.
+
+To load the celery the command line :-
+celery -A django_celery_project.celery worker --pool=solo --concurrency=5 --autoscale=10,3 -l info  (after -A we have to write project name) (in autoscale 10 is max and 3 is min)

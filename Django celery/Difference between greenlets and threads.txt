@@ -1,0 +1,12 @@
+Difference between threads and greenlets :-
+
+- Python's threading library makes use of the system's native OS to schedule threads.
+- This general purpose scheduler is not always efficient.
+- It makes use of Python's global interpreter lock to make sure shared data structures are accessed by only one thread at a time to avoid race conditions.
+- CPython Interpreter, GIL, OS.
+- Greenlets emulate multi-threaded enviornments without relying on any native operating system capabilities.
+- Greenlets are managed in application space not in kernel space.
+- In greenlets, no scheduler pre-emptively switching between your threads at any given moment.
+- Instead, your greenlets voluntarily or explicitly give up control to one another at specified points in your code.
+- Thus more scalable and efficient.
+- Less RAM required.
