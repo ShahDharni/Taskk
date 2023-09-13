@@ -1,0 +1,64 @@
+{% extends 'myapp/basic.html' %}
+{% load static %}
+
+{% block title %}
+{% load myfilters %}   ## myfilters are used to optimize the site speed 
+StockTracker
+{% endblock %}
+{% block css %}
+<style>
+
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+  <h1>Live Stock Tracker</h1>
+  <table class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">SNo.</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Price</th>
+          <th scope="col">Open</th>
+          <th scope="col">Change</th>
+          <th scope="col">Market Cap</th>
+          <th scope="col">Volume</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      {% for key,value in data.items %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{key}}</td>
+          <td>{{value|get:"Quote Price"}}</td>
+          <td>{{value|get:"Previous close"}}</td>
+          <td>{{value|get:"Open"}}</td>
+          <td>{{value|get:"Market Cap"}}</td>
+          <td>{{value|get:"Volume"}}</td>
+
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </table>
+</div>
+{% endfor %}
+{% endblock %}
+{% block js %}
+<script>
+
+</script>
+{% endblock %}
