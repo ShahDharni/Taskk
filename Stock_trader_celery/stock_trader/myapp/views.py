@@ -54,7 +54,7 @@ def stockTracker(request):
 
     print(start)
     for i in stockpicker:
-        details = get_quote_table(i)
+        details = get_quote_table(i,dict_result=True)
         print('details',details)
         data.update({i:details})
     end=time.time()
@@ -62,7 +62,7 @@ def stockTracker(request):
     print('time_taken',time_taken)
     print('end',end)
     print('data',data)
-    return render(request, 'myapp/stocktracker.html',{'data':data})
+    return render(request, 'myapp/stocktracker.html',{'data':data,'room_name':'track'})
 
 
 # The get_quote_table method can be used to extract the data found on the summary page of a stock. This method extracts financial data from the summary page of stock and returns it in the form of a dictionary.

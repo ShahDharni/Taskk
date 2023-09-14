@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "myapp"
+    "myapp",
+    "django_celery_results",
+    "django_celery_beat",
+    "channels"
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "stock_trader.wsgi.application"
+ASGI_APPLICATION = "stock_trader.asgi.application"
 
 
 # Database
@@ -80,6 +84,16 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
+}
+
+ASGI_APPLICATION = "mysite.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
 }
 
 
@@ -141,3 +155,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_celery_project.settings'
 # Celery Beat settings
 CELERY_BEAT_SCHEDULER="django_celery_beat.schedulers.DatabaseScheduler"
 
+
+
+## Celery beat will add the task to the Redis Queue at the specified time.(used to add periodic task)
+## Redis will work as broker (will also work on FIFO method i.e whichever task first added to the Redis Queue will be transferred to Celery first)
+## Django project ---> Celery Beat ---> Redis ---> Celery
+## or 
+## Celery Beat ---> Redis ---> Celery
