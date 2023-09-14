@@ -3,7 +3,8 @@ from yahoo_fin.stock_info import *
 from django.http import HttpResponse
 import time
 import queue
-from threading import Thread
+from threading import Thread   ## Threading is used to run multiple tasks or call function at the same time.
+
 
 # Create your views here.
 
@@ -16,8 +17,8 @@ def stockPicker(request):
 
 
 def stockTracker(request):
-    # details=get_quote_table(ticker='RELIANCE.NS',dict_result=True)
-    # print(details)
+    # result=get_quote_table('TCS.NS',dict_result=True)
+    # print(result)
     # return render(request,'myapp/stocktracker.html')
 
     stockpicker = request.GET.getlist('stockpicker')
@@ -54,12 +55,13 @@ def stockTracker(request):
     print(start)
     for i in stockpicker:
         details = get_quote_table(i)
+        print('details',details)
         data.update({i:details})
     end=time.time()
     time_taken= end - start
-    print(time_taken)
-    print(end)
-    print(data)
+    print('time_taken',time_taken)
+    print('end',end)
+    print('data',data)
     return render(request, 'myapp/stocktracker.html',{'data':data})
 
 

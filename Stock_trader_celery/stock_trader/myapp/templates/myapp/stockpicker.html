@@ -13,11 +13,11 @@ StockPicker
 <div class="container">
     <h1>Live Stock Tracker</h1>
     <p>Select your favourite stocks</p>
-    <form action="">
+    <form action="stocktracker/">
         <label for="stockpicker">Select Stocks:</label>
         <select class="form-select" multiple aria-label="multiple select example" name="stockpicker">
             {% for i in stockpicker %}
-              <option value="{{i}}">{{i}}</option>
+            <option value="{{i}}">{{i}}</option>
             {% endfor %}
         </select>
         <br>
