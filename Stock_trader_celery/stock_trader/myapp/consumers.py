@@ -60,7 +60,7 @@ class StockConsumer(WebsocketConsumer):
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name, {"type": "stock.message", "message": message}
+            self.room_group_name, {"type": "send_update", "message": message}
         )
 
     # Receive message from room group

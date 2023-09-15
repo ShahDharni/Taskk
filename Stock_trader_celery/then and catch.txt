@@ -1,0 +1,24 @@
+Consumers :-  then and catch
+
+The consuming code can receive the final output through then and catch.
+The most fundamental one is then.
+promise.then(function(result){*/handle */},
+            function(error){*/handle error */}
+);
+
+If we are interested in sucessfull completion then, we can provide only one function argument to then(). 
+
+Example
+
+let promise=new Promise = (resolve=>{
+    setTimeout(()=> resolve ("done"), 5000)
+});
+
+promise.then(alert)
+
+
+If we are interested in only errors , we can use only null as the first argument : .then(null,f) or we can use catch
+
+promise.catch(alert)
+
+promise.finally(()=>{}) is used to perform general cleanups.

@@ -3,9 +3,9 @@ from django.shortcuts import render
 from yahoo_fin.stock_info import *
 from django.http import HttpResponse
 import queue
+from channels.layers import get_channel_layer
 # Threading is used to run multiple tasks or call function at the same time.
 from threading import Thread
-from channels.layers import get_channel_layer
 import asyncio
 import simplejson as json
 

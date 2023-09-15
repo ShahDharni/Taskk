@@ -17,8 +17,8 @@ def stockPicker(request):
 
 
 def stockTracker(request):
-    # result=get_quote_table('TCS.NS',dict_result=True)
-    # print(result)
+    # details=get_quote_table('TCS.NS')
+    # print(details)
     # return render(request,'myapp/stocktracker.html')
 
     stockpicker = request.GET.getlist('stockpicker')
@@ -54,9 +54,9 @@ def stockTracker(request):
 
     print(start)
     for i in stockpicker:
-        details = get_quote_table(i,dict_result=True)
+        details = get_quote_table(i)
         print('details',details)
-        data.update({i:details})
+        data.update({i:details},)
     end=time.time()
     time_taken= end - start
     print('time_taken',time_taken)
