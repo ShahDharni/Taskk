@@ -39,6 +39,8 @@
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
   
 
+
+# Optimized Code
 import pandas as pd
 from rest_framework import status
 from rest_framework.response import Response
@@ -47,7 +49,6 @@ from .models import Student
 from .serializers import StudentSerializers
 import datetime
 
-# Define the CSV file path as a constant
 CSV_FILE_PATH = 'C:/Users/BAPS/Desktop/Daily Task/panda/StudentsPerformance.csv'
 
 class StudentListCreateView(APIView):
